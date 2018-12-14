@@ -1,0 +1,55 @@
+*
+{
+    
+    font-size: 2vh;
+}
+
+.nav-link
+{
+    color: yellow;
+}
+
+
+#gallery
+{
+	display: none;
+}
+.gally
+{
+	margin: 10px 50px;
+}
+.gally img
+{
+	width: 230px;
+	padding: 5px;
+	filter: grayscale(100%);
+	transition: 1s;
+}
+.gally img:hover
+{
+	filter: grayscale(0);
+	transform: scale(1.1);
+}
+.booth
+{
+    width:400px;
+    background-color: #ccc;
+    border:10px solid #ddd;
+    margin:0 auto
+}
+.booth-capture
+{
+    display: block;
+    margin: 10px 0;
+    padding: 12px 20px;
+    background-color: cornflowerblue;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+}
+
+#myDIV {
+    width: 100%;
+    padding: 10px 0;
+    text-align: left;
+  }
