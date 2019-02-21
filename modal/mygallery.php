@@ -4,7 +4,7 @@
     session_start();
     global $conn;
 if ($_SESSION['username']) {
-    $query = "SELECT * FROM camagru.photos WHERE uploaderID=:id ORDER BY id ASC;";
+    $query = "SELECT * FROM `camagru`.`photos` WHERE uploaderID=:id ORDER BY id ASC;";
     try
     {
         $stmt = $conn->prepare($query);

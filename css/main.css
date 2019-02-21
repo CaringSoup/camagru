@@ -48,8 +48,68 @@
     text-decoration: none;
 }
 
-#myDIV {
-    width: 100%;
-    padding: 10px 0;
-    text-align: left;
-  }
+.comment-box
+{
+    width: 300px;
+    padding: 2px;
+    background-color: rgb(40,40,40);
+    border-bottom: 1px solid silver;
+    border-radius: 2px;
+    color: gainsboro;
+
+    display: flex;
+    flex-direction: row;
+}
+.signupModalError {
+    color: red;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    background-color: rgba(50, 50, 50, 0.09);
+}
+
+.signupModalError2 {
+    color: red;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    background-color: rgba(50, 50, 50, 0.09);
+}
+
+
+.image {
+    width: 300px;
+    box-shadow: 5px 5px 2px 2px rgba(0, 0, 0, 0.5);
+    display: block;
+    margin: auto;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    padding: 10px;
+}
+
+.grid-element {
+    align-content: center;
+    margin: 10px;
+    padding: 10px;
+
+    background-color: rgb(100, 100, 100);
+    border-radius: 10px;
+    box-shadow: 7px 8px 1px 1px rgba(0, 0, 0, 0.8);
+    border: 3px solid silver;
+}
+
+.comment-display {
+    margin: 10px 0;
+}
+
+.comment-content {
+    padding: 0 5px;
+}
+
+.comment-user {
+    border-right: 1px dashed silver;
+    padding: 0 8px;
+}

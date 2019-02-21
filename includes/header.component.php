@@ -14,13 +14,17 @@
 }
 </style>
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-        <div class="container-fluid">
-        <a class="navbar-brand" href="#" >Camagru</a>
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Camagru</a>
         <?php
         if (!isset($_SESSION['username']))
         {
         ?>
             <button type="button" class="btn btn-success" id="openModal" onclick="loginModal()">Login</button>
+        <?php
+        } else { 
+        ?>
+            <button type="button" class="btn btn-success" id="updatedModal" onclick="updateModalnew()">Profile</button>
         <?php
         }
         ?>

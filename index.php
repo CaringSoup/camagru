@@ -15,13 +15,14 @@
 <body>
     <!-- Header -->
     <?php include("includes/header.component.php"); ?>
-	<!-- Container -->
+    <!-- Container -->
+    <?php include("includes/update.component.php"); ?>
 	<?php include("includes/user.component.php"); ?>
     <div class="container-fluid">
         <div class="row">
             <?php include("includes/menu.component.php"); ?>
             <div class="col-md-10" style="background: azure;">
-				<?php if ($_GET['page'] == 'Gallery') { include("modal/gallery.php"); include("likes.php"); include("thumbs_up.php"); include("delete.php"); } ?>
+				<?php if ($_GET['page'] == 'Gallery') { include("modal/gallery.php"); include("thumbs_up.php"); include("delete.php"); } ?>
 				<?php if ($_GET['page'] == 'Camera') { include("modal/Camera.php"); } ?>
 				<?php if ($_GET['page'] == 'Profile') { include("modal/profile.php"); } ?>
             </div>

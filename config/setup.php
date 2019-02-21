@@ -5,7 +5,7 @@
     {
         $query = "CREATE TABLE IF NOT EXISTS `users` (
             `id` INT AUTO_INCREMENT PRIMARY KEY,
-            `username` varchar(50) NOT NULL,
+            `username` varchar(50) UNIQUE NOT NULL,
             `password` varchar(1024) NOT NULL,
             `email` varchar(150) NOT NULL,
             `isVerified` int DEFAULT 0,
@@ -52,10 +52,10 @@
     try
     {
         $comments = $conn->prepare("CREATE TABLE IF NOT EXISTS `comments` (
-            `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            `uid` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
             `comment` varchar(1024),
-            `commenter_id` INT NOT NULL,
-            `image_id` INT NOT NULL
+            `image_id` INT NOT NULL,
+            'commenter_id' varchar(1024) NOT NULL
             );"
         );
         $comments->execute();

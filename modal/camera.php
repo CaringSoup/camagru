@@ -13,8 +13,70 @@
     </div>
     <div class="row">
   <input type="checkbox" name="overlay" value="black_beard" id="bbeard">Black beard<br>
-  <input type="checkbox" name="overlay" value="jb007" checked="checked" id="jb">The names Bond...<br>
+  <input type="checkbox" name="overlay" value="jb007" id="jb">The names Bond...<br>
   <input type="checkbox" name="overlay" value="santa_hat" id="hat">Santa hat<br>
+  <p id="status"><p>
   <input type="button" onclick="examplePreview()" value="Add on">
+  <form>
+    Select file to upload:
+    <input type="file" id="image" name="fileToUpload" id="fileToUpload">
+</form>
+
+<script>
+document.querySelector("#image").addEventListener("change", (e) => loadtocanvas(e.target.files));
+function loadtocanvas(e)
+{
+	var file = null;
+
+	for (let i = 0; i < e.length; i++) {
+		if (e[i].type.match(/^image\//)) {
+			file = e[i];
+		break;
+		}
+	}
+	var newimg = new Image();
+	if (file)
+	{
+		newimg.onload = function()
+		{
+            // Camera - disable / display none
+            document.querySelector('#videodiv').style.display = "none";
+            document.querySelector('#photodiv').style.display = "block";
+            // Canvas Hold? Main??? display = "block";
+            var canvas = document.querySelector('#canvas');
+            var canvashold = document.querySelector('#canvashold');
+            var twod = canvas.getContext('2d');
+            var twodhold = canvashold.getContext('2d');
+            canvashold.width = this.width;
+            canvashold.height = this.height;
+            canvas.width = this.width;
+            canvas.height = this.height;
+            canvas.style.display = "none";
+            canvashold.style.display = "block";
+            console.log(this.width + ":" + this.height);
+            twod.drawImage(newimg, 0, 0);
+            twodhold.drawImage(newimg, 0, 0);
+		}
+        newimg.src = URL.createObjectURL(file);
+	}
+}
+
+
+function savetogallery2()
+{
+    xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function ()
+    {
+        if (this.readyState == 4 && this.status == 200)
+        {
+            document.querySelector('#status').innerHTML = this.response;
+        }
+    }
+    xhr.open("post", "./modal/image_upload.php");
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("image=" + document.querySelector('#canvas').toDataURL());
+}
+</script>
+
 </div>
     <div id="thing"></div>

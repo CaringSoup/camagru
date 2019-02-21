@@ -1,6 +1,12 @@
-let canvas, canvashold, canvas_2d, canvashold_2d, video, videodiv, photodiv;
+let canvas, canvashold, canvas_2d, canvashold_2d, video, videodiv, photodiv, jbimg, santa, bbeardimg;
 
 window.onload = function() {
+    jbimg = new Image();
+    jbimg.src = "superimpose/jb.png";
+    santa = new Image();
+    santa.src = "superimpose/santa_hat.png";
+    bbeardimg = new Image();
+    bbeardimg.src = "superimpose/black_beard.png";
     canvas = document.getElementById('canvas'); //demo
     canvashold = document.getElementById('canvashold'); //sent to server
     canvas_2d = canvas.getContext('2d');
@@ -31,6 +37,8 @@ function snap(){
     canvashold.width = video.offsetWidth;
     canvashold.height = video.offsetHeight;
     canvashold_2d.drawImage(video, 0, 0, video.offsetWidth, video.offsetHeight);
+    canvashold.style.display = "block";
+    canvas.style.display = "none";
     videodiv.style.display = "none";
 }
 
@@ -38,41 +46,38 @@ function examplePreview()
 {
 	var bbeard = document.getElementById("bbeard");
 	var jb = document.getElementById("jb");
-    var santa = document.getElementById("hat");
+    var santa_hat = document.getElementById("hat");
+    canvashold_2d.drawImage(canvas, 0, 0);
 
-	if (bbeard.checked)
-	{
-		var bbeardimg = new Image();
-		bbeardimg.src = "superimpose/black_beard.jpg";
-		canvashold_2d.drawImage(bbeardimg,100,480,630,100);
-	}
 	if (jb.checked)
 	{
-		var jb = new Image();
-		jb.src = "superimpose/jb007.jpg";
-		canvashold_2d.drawImage(jb,0,0,640,640);
+        canvashold_2d.drawImage(jbimg,0,0,canvas.width, canvas.height);
 	}
-	if (santa.checked)
-	{
-		var santa = new Image();
-		santa.src = "superimpose/santa_hat.jpg";
-		canvashold_2d.drawImage(santa,320,0,400,100);
+    if (bbeard.checked)
+    {
+        canvashold_2d.drawImage(bbeardimg, (40/100 * canvas.width) , (52 / 100 * canvas.height) , (26/100 * canvas.width) ,(26/100 * canvas.height));
+    }
+    if (santa_hat.checked) 
+    {
+		canvashold_2d.drawImage(santa, (40/100 * canvas.width) , (8 / 100 * canvas.height) , (45/100 * canvas.width) ,(45/100 * canvas.height));
 	}
 }
 
 function savetogallery()
 {
-    var image = canvashold.toDataURL();
+    var image = canvas.toDataURL();
     xhr = new XMLHttpRequest();
+    var bbeard = document.getElementById("bbeard");
+	var jb = document.getElementById("jb");
+    var santa_hat = document.getElementById("hat");
     xhr.onreadystatechange = function ()
     {
         if (this.readyState == 4 && this.status == 200)
         {
-            alert(this.response);
+            document.querySelector('#status').innerHTML = this.response;
         }
-        console.log("ready state:: " + this.readyState + "\nStatus:: " +  this.status + "\nResponse:: " + this.response);
     }
     xhr.open("post", "modal/savephoto.php");
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("image=" + escape(image));
+    xhr.send("image=" + escape(image) + "&bbeard=" + bbeard.checked  + "&santa=" + santa_hat.checked + "&jb=" + jb.checked + "&width=" + canvas.width + "&height=" + canvas.height);
 }

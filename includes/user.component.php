@@ -29,7 +29,7 @@
 			</form>
 			<h5>Not yet a member ? <a href="#" onclick="mySignup()">Sign up</a></h5>
 			<div id="signup" style="display: none;">
-				<form action="modal/signup.php" method="POST">
+				<form>
 				<table>
 					<tr>
 						<td>Create username	:</td>
@@ -49,15 +49,16 @@
 					</tr>
 					<tr>
 						<td>
-							<input type="submit" value="Sign up">
+							<input type="button" onclick='signup()' value="Sign up">
 					    </td>
 					</tr>
 				</table>
 				</form>
+				<p class='signupModalError'></p>
 			</div>
         </div>
         <div class="modal-footer">
-        <button type="button" class="btn btn-danger" id ="closeModal" onclick='loginModal()'>Close</button>
+        <button type="button" class="btn btn-danger" id ="closeModal" onclick='updateModal()'>Close</button>
       </div>
 
     </div>
